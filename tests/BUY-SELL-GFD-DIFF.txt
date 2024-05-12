@@ -1,0 +1,3 @@
+BUY GFD 100 1 order1
+SELL GFD 90 2 order2
+PRINT

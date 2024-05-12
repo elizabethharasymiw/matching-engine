@@ -1,0 +1,2 @@
+SELL GFD 100 1 order1
+PRINT

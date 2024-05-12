@@ -2,5 +2,5 @@
 cmake -S ./src -B ./build
 cd build
 make
-./matching-engine
+./matching-engine ../tests/BUY-GFD.txt
 

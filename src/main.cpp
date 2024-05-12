@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 int main(int argc, char* argv[]){
     std::ifstream inputFile(argv[1]);
@@ -9,9 +10,22 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
+    std::string operation;
     std::string line;
-    while(std::getline(inputFile, line)){
-        std::cout << line << std::endl;
+
+    std::getline(inputFile, line);
+    std::istringstream iss(line);
+    iss >> operation;
+
+    while(operation != "PRINT"){
+        if(operation == "BUY"){
+            std::cout << "BUY found" << std::endl;
+        }
+
+        std::getline(inputFile, line);
+        iss.clear();
+        iss.str(line);
+        iss >> operation;
     }
 
     inputFile.close();

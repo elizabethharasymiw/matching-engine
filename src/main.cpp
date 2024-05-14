@@ -1,6 +1,23 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <unordered_map>
+#include <vector>
+
+
+// Key = Price
+// Value = First Node is total quantity, Following nodes are orderIDs at that price
+std::unordered_map<int, std::vector<std::string> > GFDActiveSellPrices;
+std::unordered_map<int, std::vector<std::string> > GFDActiveBuyPrices;
+
+// Key = orderID
+// Value = int array with: price, quantity
+std::unordered_map<std::string, int[2]> GFDSellOrders;
+std::unordered_map<std::string, int[2]> GFDBuyOrders;
+
+// Lists for keeping track of active offer sell and buy prices
+std::vector<int> sellPriceList;
+std::vector<int> buyPriceList;
 
 void operationBUY(std::string orderType, std::string orderID, int price, int quantity);
 void operationSELL(std::string orderType, std::string orderID, int price, int quantity);

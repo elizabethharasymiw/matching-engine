@@ -23,6 +23,7 @@ void operationBUY(std::string orderType, std::string orderID, int price, int qua
 void operationSELL(std::string orderType, std::string orderID, int price, int quantity);
 void operationCANCEL(std::string orderID);
 void operationMODIFY(std::string orderID, std::string orderType, int newPrice, int newQuantity);
+void operationPRINT();
 
 int main(int argc, char* argv[]){
     std::ifstream inputFile(argv[1]);
@@ -70,6 +71,8 @@ int main(int argc, char* argv[]){
         iss >> operation;
     }
 
+    operationPRINT();
+
     inputFile.close();
 
     return 0;
@@ -89,5 +92,9 @@ void operationCANCEL(std::string orderID){
 }
 
 void operationMODIFY(std::string orderID, std::string orderType, int newPrice, int newQuantity){
+    return;
+}
+
+void operationPRINT(){
     return;
 }

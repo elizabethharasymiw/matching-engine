@@ -13,15 +13,17 @@ std::unordered_map<int, std::vector<std::string> > GFDActiveBuyPrices;
 
 // Key = orderID
 // Value = int array with: price, quantity
-std::unordered_map<std::string, int[2]> GFDSellOrders;
-std::unordered_map<std::string, int[2]> GFDBuyOrders;
+std::unordered_map<std::string, int[2] > GFDSellOrders;
+std::unordered_map<std::string, int[2] > GFDBuyOrders;
 
 // Lists for keeping track of active offer sell and buy prices
 std::vector<int> sellPriceList;
 std::vector<int> buyPriceList;
 
 bool orderIDInUse(std::string orderID);
+void removePriceFromSellList(int price);
 int findThisPriceOrCheaperSellPrice(int price);
+void removeOrderIDFromActiveSellPrices(std::string orderID, int price, int quantity);
 int resolveBuyTrades(int price, int foundPrice, std::string orderID, int quantity);
 void addNewGFDBuyOrder(int price, std::string orderID, int quantity);
 void operationBUY(std::string orderType, std::string orderID, int price, int quantity);
@@ -90,6 +92,21 @@ bool orderIDInUse(std::string orderID){
     else {
         return false; // No orderID found
     }
+}
+
+void removePriceFromSellList(int price){
+    auto priceIndex = std::find(sellPriceList.begin(), sellPriceList.end(), price);
+    sellPriceList.erase(priceIndex);
+}
+
+void removeOrderIDFromActiveSellPrices(std::string orderID, int price, int quantity){
+    // find orderID in GFDActiveSellPrices and remove it
+    auto orderIDIndex = std::find(GFDActiveSellPrices[price].begin(), GFDActiveSellPrices[price].end(), orderID);
+    GFDActiveSellPrices[price].erase(orderIDIndex);
+
+    // update quantity
+    int originalQuantity = std::stoi(GFDActiveSellPrices[price][0]);
+    GFDActiveSellPrices[price][0] = std::to_string(originalQuantity - quantity);
 }
 
 int findThisPriceOrCheaperSellPrice(int price){
@@ -203,7 +220,7 @@ void operationBUY(std::string orderType, std::string orderID, int price, int qua
         addNewGFDBuyOrder(price, orderID, quantity);
     }
 
-    return
+    return;
 }
 
 void operationSELL(std::string orderType, std::string orderID, int price, int quantity){
@@ -219,5 +236,16 @@ void operationMODIFY(std::string orderID, std::string orderType, int newPrice, i
 }
 
 void operationPRINT(){
+   std::cout << "SELL:" << std::endl;
+   std::sort(sellPriceList.begin(), sellPriceList.end(), [](int a, int b){return a > b;});
+   for(int i = 0; i < sellPriceList.size(); i++){
+       std::cout << sellPriceList[i] << " " << GFDActiveSellPrices[sellPriceList[i]][0] << std::endl;
+   }
+
+    std::cout << "BUY:" << std::endl;
+    std::sort(buyPriceList.begin(), buyPriceList.end(), [](int a, int b){return a > b;});
+    for(int i = 0; i < buyPriceList.size(); i++){
+        std::cout << buyPriceList[i] << " " << GFDActiveBuyPrices[buyPriceList[i]][0] << std::endl;
+    }
     return;
 }

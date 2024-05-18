@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
            std::string orderType, orderID;
            int price, quantity;
            iss >> orderType >> price >> quantity >> orderID;
-           operationBUY(orderType, orderID,  price, quantity);
+           //operationBUY(orderType, orderID,  price, quantity);
        }
        else if(operation == "SELL"){
            std::string orderType, orderID;

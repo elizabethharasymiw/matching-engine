@@ -21,6 +21,8 @@ jobs:
       run: git clone https://github.com/catchorg/Catch2.git
     - name: Enter Catch2 code folder
       run: cd Catch2
+    - name: test dir print
+      run: ls -hal
     - name: Build Catch2
       run: cmake -Bbuild -H. -DBUILD_TESTING=OFF
     - name: Install Catch2

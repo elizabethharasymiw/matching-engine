@@ -1,0 +1,34 @@
+name: catch2 tests CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  tests:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install brew
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    - name: Install Cmake
+      run: brew install cmake
+
+    - name: Clone, Build and Install Catch2
+      run: |
+        git clone https://github.com/catchorg/Catch2.git
+        cd ./Catch2
+        cmake -Bbuild -H. -DBUILD_TESTING=OFF
+        sudo cmake --build build/ --target install
+
+    - name: Build project using cmake
+      run: ./cmake.sh
+
+    - name: Build and Run Tests
+      run: ./tests.sh

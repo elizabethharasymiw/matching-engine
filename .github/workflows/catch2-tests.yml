@@ -20,17 +20,11 @@ jobs:
     - name: Install Cmake
       run: brew install cmake
 
-    - name: Clone Catch2 code
-      run: git clone https://github.com/catchorg/Catch2.git
-
-    - name: Build Catch2
+    - name: Clone, Build and Install Catch2
       run: |
+        git clone https://github.com/catchorg/Catch2.git
         cd ./Catch2
         cmake -Bbuild -H. -DBUILD_TESTING=OFF
-
-    - name: Install Catch2
-      run: |
-        cd ./Catch2
         sudo cmake --build build/ --target install
 
     - name: Build project using cmake

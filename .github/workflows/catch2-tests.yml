@@ -24,12 +24,14 @@ jobs:
       run: git clone https://github.com/catchorg/Catch2.git
 
     - name: Build Catch2
-#      uses: ./Catch2/
-      run: cmake -Bbuild -H. -DBUILD_TESTING=OFF
+      run: |
+        cd ./Catch2
+        cmake -Bbuild -H. -DBUILD_TESTING=OFF
 
     - name: Install Catch2
-#      uses: ./Catch2/
-      run: sudo cmake --build build/ --target install
+      run: |
+        cd ./Catch2
+        sudo cmake --build build/ --target install
 
     - name: Build project using cmake
       run: ./cmake.sh

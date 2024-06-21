@@ -1,0 +1,19 @@
+name: catch2 tests CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  tests:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build project using cmake
+      run: ./cmake.sh
+    - name: Build and Run Tests
+      run: ./tests.sh

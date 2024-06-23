@@ -1,5 +1,5 @@
 # Matching  Engine
-This program takes in SELL and BUY offers and resolves as many orders as possible
+Command line mock market program to match BUY and SELL offers
 
 ## How to Use
 - Note: This project does not have any shipped releases yet

@@ -3,6 +3,7 @@ This program takes in SELL and BUY offers and resolves as many orders as possibl
 
 ## How to Use
 - Note: This project does not have any shipped releases yet
+- Note: No support on Windows
 - Install CMake 3.29.3 or newer
 - Run Build Script: ``` ./cmake.sh ```
 - Start Program: ``` ./manualtesting ```
@@ -15,6 +16,7 @@ This program takes in SELL and BUY offers and resolves as many orders as possibl
 ## Developer Build Instructions
 - Note: The test suite needs Catch2 v3 installed to build and run the tests
 - Note: The build system needs CMake version 3.29.3 or newer installed to build the project
+- Note: No support on Windows
 - Build Script: ``` ./cmake.sh ```
 - Manual Test Script: ``` ./manualtesting.sh ```
 - Run Test Suite Script: ``` ./tests.sh ```
